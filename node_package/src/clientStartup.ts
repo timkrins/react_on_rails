@@ -178,8 +178,7 @@ You should return a React.Component always for the client side entry point.`);
   }
 }
 
-function forEachReactOnRailsComponentRender(context: Context, railsContext: RailsContext): void {
-  const els = reactOnRailsHtmlElements();
+function forEachReactOnRailsComponentRender(els: HTMLCollectionOf<Element>, context: Context, railsContext: RailsContext): void {
   for (let i = 0; i < els.length; i += 1) {
     render(els[i], context, railsContext);
   }
@@ -213,7 +212,8 @@ export function reactOnRailsPageLoaded(): void {
     context.roots = [];
   }
   forEachStore(context, railsContext);
-  forEachReactOnRailsComponentRender(context, railsContext);
+  const els = reactOnRailsHtmlElements();
+  forEachReactOnRailsComponentRender(els, context, railsContext);
 }
 
 function unmount(el: Element): void {

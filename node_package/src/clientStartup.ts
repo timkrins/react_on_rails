@@ -216,6 +216,16 @@ export function reactOnRailsPageLoaded(): void {
   forEachReactOnRailsComponentRender(els, context, railsContext);
 }
 
+export function reactOnRailsRenderIndividualElements(els: HTMLCollectionOf<Element>) {
+  const railsContext = parseRailsContext();
+
+  // If no react on rails components
+  if (!railsContext) return;
+
+  const context = findContext();
+  forEachReactOnRailsComponentRender(els, context, railsContext);
+}
+
 function unmount(el: Element): void {
   const domNodeId = domNodeIdForEl(el);
   const domNode = document.getElementById(domNodeId);
